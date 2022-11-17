@@ -14,7 +14,7 @@ struct biqueue{
 typedef struct biqueue* Biqueue;
 
 Biqueue new_biqueue(){
-    Biqueue new_biqueue = (Biqueue)malloc(sizeof(sturct biqueue))
+    Biqueue new_biqueue = (Biqueue)malloc(sizeof(struct biqueue))
     new_biqueue->left_end = NULL;
     new_biqueue->right_end = NULL;
     return new_biqueue;
