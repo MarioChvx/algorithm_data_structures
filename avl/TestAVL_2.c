@@ -1,8 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include"C:\Santiago\ClasesEnLinea\Ago2022\2AV2\Elem\ElemInt.h"
-#include"C:\Santiago\ClasesEnLinea\Ago2022\2AV2\AVL\AVL.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "ElemInt.h"
+#include "AVL.h"
 
 int main(){
     Elem e;
@@ -10,11 +10,17 @@ int main(){
 
     while((e=LeeElem())!=0)
          x=insordAB(e,x);
+
     printf("Fact bal %d\n",FactBal(x));
-    EsAVL(x)?puts("Si."):puts("No.");
-    x=rotaIzqDer(x);
+    EsAVL(x) ? puts("Si.") : puts("No.");
+    PreOrd(x);
+    printf("\n");
+    //x=rotaIzqDer(x);
+    x = HazAVL(x);
     printf("Fact bal %d\n",FactBal(x));
-    EsAVL(x)?puts("Si."):puts("No.");
+    EsAVL(x) ? puts("Si.") : puts("No.");
+    PreOrd(x);
+    printf("\n");
 
 
     return 0;

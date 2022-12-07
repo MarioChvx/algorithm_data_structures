@@ -1,3 +1,5 @@
+# include <stdlib.h>
+
 struct node{
     Elem data;
     struct node* next;
@@ -13,10 +15,10 @@ struct queue{
 typedef struct queue* Queue;
 
 Queue new_queue(){
-    Queue new = (Queue)malloc(sizeof(struct queue));
-    new -> first = NULL;
-    new -> last = NULL;
-    return new;
+    Queue new_q = (Queue)malloc(sizeof(struct queue));
+    new_q->first = NULL;
+    new_q->last = NULL;
+    return new_q;
 }
 
 int is_new(Queue q){

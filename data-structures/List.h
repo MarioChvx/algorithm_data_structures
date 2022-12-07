@@ -1,13 +1,14 @@
+# include <stdlib.h>
 
 struct node{
     Elem data;
     struct node* next;
-}
+};
 
 typedef struct node* List;
 
 List new_list(){
-    new_list = (List)malloc(sizeof(struct node));
+    List new_list = (List)malloc(sizeof(struct node));
 
     new_list->data = NULL;
     new_list->next = NULL;
@@ -22,24 +23,25 @@ int is_new_list(List l){
         return 0;
 }
 
-Elem get_head_from_list(List l)
+Elem get_head_from_list(List l){
+    return l->data;
+}
 
 List add_to_list(List l, Elem e){
     if(is_new_list(l))
         l->data = e;
     else{
-        new_list = new_list();
-        new_list->data = e;
-        new_list->next = l;
-        l = new_list;
+        List new_l = new_list();
+        new_l->data = e;
+        new_l->next = l;
+        l = new_l;
     }
     return l;
 }
 
 List remove_from_list(List l){
-    node_to_delete = l;
-    l = node_to_delet->next;
+    List node_to_delete = l;
+    l = node_to_delete->next;
     free(node_to_delete);
     return l;
 }
-

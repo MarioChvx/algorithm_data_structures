@@ -1,8 +1,9 @@
+#include <stdlib.h>
 
 struct node{
     Elem data;
     struct node* next;
-}
+};
 
 typedef struct node* Node;
 
@@ -17,8 +18,7 @@ CList new_circular_list(){
 }
 
 Node new_node(){
-    Node new_n (Node)malloc(sizeof(struct node));
-
+    Node new_n = (Node)malloc(sizeof(struct node));
 }
 
 int is_new_clist(CList l){
@@ -33,7 +33,7 @@ Elem get_head_from_clist(CList l){
 }
 
 void append_to_clist(CList l, Elem e){
-    CList new_node = new_clist();
+    CList new_node = new_circular_list();
     if(is_new_clist(l)){
         new_node->data = e;
         new_node->next = new_node;
