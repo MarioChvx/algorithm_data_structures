@@ -59,15 +59,14 @@ AVL HazAVL(ArBB a){
 }
 
 AVL InsAVL(Elem e, AVL a){
-      a=insordAB(e,a);
-      if(EsAVL(a))
-         return a;
-      else
-         return HazAVL(a);
+    a = insordAB(e,a);
+    if(!EsAVL(a))
+        return HazAVL(a);
+    return a;
 }
 
 ArBB BorrarAVL(Elem e, ArBB a){
-    if(EsIgual(e,raiz(a)) && EsHoja(a))
+    if(EsIgual(e, raiz(a)) && EsHoja(a))
         return vacioAB();
     else
         if(esvacioAB(izqAB(a)))
@@ -76,9 +75,5 @@ ArBB BorrarAVL(Elem e, ArBB a){
             if(esvacioAB(derAB(a)))
                 return izqAB(a);
             else
-                    return consAB(
-                            ElMenor(derAB(a)),
-                            izqAB(a),
-                            BorrarAVL(ElMenor(derAB(a)),derAB(a))
-                        );
+                return consAB(ElMenor(derAB(a)), izqAB(a), BorrarAVL(ElMenor(derAB(a)),derAB(a)));
 }
