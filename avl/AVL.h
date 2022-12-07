@@ -1,4 +1,5 @@
 #include"ArBB.h"
+
 typedef ArBB AVL;
 
 int absoluto(int a){
@@ -63,4 +64,21 @@ AVL InsAVL(Elem e, AVL a){
          return a;
       else
          return HazAVL(a);
+}
+
+ArBB BorrarAVL(Elem e, ArBB a){
+    if(EsIgual(e,raiz(a)) && EsHoja(a))
+        return vacioAB();
+    else
+        if(esvacioAB(izqAB(a)))
+                return derAB(a);
+        else
+            if(esvacioAB(derAB(a)))
+                return izqAB(a);
+            else
+                    return consAB(
+                            ElMenor(derAB(a)),
+                            izqAB(a),
+                            BorrarAVL(ElMenor(derAB(a)),derAB(a))
+                        );
 }
