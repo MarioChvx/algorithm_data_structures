@@ -16,7 +16,9 @@ int esvacioAB(ArBin a){return a==NULL;}
 Elem raiz(ArBin a){return a->raiz;}
 ArBin izqAB(ArBin a){return a->izq;}
 ArBin derAB(ArBin a){return a->der;}
-
+int EsHoja(ArBin a){
+    return (esvacioAB(derAB(a)) && esvacioAB(izqAB(a)));
+}
 int NumElemsAB(ArBin a){
     if(esvacioAB(a))
         return 0;
@@ -60,4 +62,22 @@ void InOrd(ArBin a){
         ImpElem(raiz(a));
         InOrd(derAB(a));
      }
+}
+
+void add_ident(char c, int ident)
+{
+    int i;
+    for(i=0;i<ident;i++)
+        printf("|");
+}
+
+void printTree(ArBin t, int ident)
+{
+    add_ident('|', ident);
+    ImpElem(raiz(t));printf("\n");
+    if(!EsHoja(t))
+    {
+        printTree(izqAB(t), ident + 1);
+        printTree(derAB(t), ident + 1);
+    }
 }

@@ -68,12 +68,14 @@ AVL InsAVL(Elem e, AVL a){
 ArBB BorrarAVL(Elem e, ArBB a){
     if(EsIgual(e, raiz(a)) && EsHoja(a))
         return vacioAB();
+    if(EsIgual(e, raiz(a)) && esvacioAB(izqAB(a)))
+        return derAB(a);
+    if(EsIgual(e, raiz(a)) && esvacioAB(derAB(a)))
+        return izqAB(a);
+    if(EsIgual(e, raiz(a)) && !EsHoja(a))
+        return consAB(ElMenor(derAB(a)), izqAB(a), BorrarAVL(ElMenor(derAB(a)),derAB(a)));
+    if(!EsIgual(e, raiz(a)) && EsMenor(e, raiz(a)))
+        return consAB(raiz(a), BorrarAVL(e, izqAB(a)), derAB(a));
     else
-        if(esvacioAB(izqAB(a)))
-                return derAB(a);
-        else
-            if(esvacioAB(derAB(a)))
-                return izqAB(a);
-            else
-                return consAB(ElMenor(derAB(a)), izqAB(a), BorrarAVL(ElMenor(derAB(a)),derAB(a)));
+        return consAB(raiz(a), izqAB(a), BorrarAVL(e,derAB(a)));
 }

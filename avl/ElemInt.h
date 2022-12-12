@@ -1,6 +1,6 @@
 typedef int Elem;
 
-void ImpElem(Elem e){printf("%d\t",e);}
+void ImpElem(Elem e){printf("%d",e);}
 Elem LeeElem(){
      Elem e;
      scanf("%d",&e);

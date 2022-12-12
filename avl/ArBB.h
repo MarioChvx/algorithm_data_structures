@@ -10,9 +10,7 @@ ArBB insordAB(Elem e, ArBB a){
         return consAB(raiz(a),izqAB(a),insordAB(e,derAB(a)));
 }
 
-int EsHoja(ArBin a){
-    return (esvacioAB(derAB(a)) && esvacioAB(izqAB(a)));
-}
+
 
 Elem ElMenor(ArBB a){
     if(esvacioAB(izqAB(a)))
