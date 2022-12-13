@@ -9,15 +9,11 @@ typedef struct node* List;
 
 List new_list(){
     List new_list = (List)malloc(sizeof(struct node));
-
-    new_list->data = NULL;
-    new_list->next = NULL;
-
     return new_list;
 }
 
 int is_new_list(List l){
-    if(l->data == NULL && l->next == NULL)
+    if(l->next == NULL)
         return 1;
     else
         return 0;
