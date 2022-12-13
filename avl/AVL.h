@@ -9,9 +9,10 @@ int absoluto(int a){
         return a;
 }
 int EsAVL(AVL a){
-  return esvacioAB(a)||
-  ((absoluto(Altura(izqAB(a))-Altura(derAB(a)))<=1) &&
-               (EsAVL(izqAB(a)))&&(EsAVL(derAB(a))));
+  return esvacioAB(a)
+    || ((absoluto(Altura(izqAB(a))-Altura(derAB(a)))<=1)
+        && (EsAVL(izqAB(a)))
+        && (EsAVL(derAB(a))));
 }
 
 int FactBal(AVL a){return Altura(izqAB(a))-Altura(derAB(a));}
