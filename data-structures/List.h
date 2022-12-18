@@ -2,42 +2,56 @@
 
 struct node{
     Elem data;
-    struct node* next;
+    struct node *next;
 };
 
-typedef struct node* List;
+typedef struct node *List;
 
 List new_list(){
-    List new_list = (List)malloc(sizeof(struct node));
-    return new_list;
+    return NULL;
 }
 
 int is_new_list(List l){
-    if(l->next == NULL)
-        return 1;
-    else
-        return 0;
+    return l == NULL;
 }
 
-Elem get_head_from_list(List l){
+Elem list_head(List l){
     return l->data;
 }
 
-List add_to_list(List l, Elem e){
-    if(is_new_list(l))
-        l->data = e;
-    else{
-        List new_l = new_list();
-        new_l->data = e;
-        new_l->next = l;
-        l = new_l;
-    }
-    return l;
+List list_tail(List l){
+    return l->next;
 }
 
-List remove_from_list(List l){
-    List node_to_delete = l;
-    l = node_to_delete->next;
-    free(node_to_delete);
-    return l;
+List new_node(Elem e){
+    List node = (List)malloc(sizeof(struct node));
+    node->data = e;
+    node->next = NULL;
+    return node;
+}
+
+List insert_head_list(Elem e, List l){
+    List node = new_node(e);
+    node->next = l;
+    return node;
+}
+
+List remove_head_list(List l){
+    List new_head = l->next;
+    free(l);
+    return new_head;
+}
+
+List remove_node_list(Elem e, List l){
+    if(elem_cmp(list_head(l), e))
+        return remove_head_list(l);
+    if(is_new_list(list_tail(l)))
+        return l;
+    return insert_head(list_head(l), remove_node_list(e, list_tail(l)));
+}
+
+void print_list(List list){
+    print_elem(list_head(list));
+    if(!is_new_list(list))
+        print_list(list_tail(list));
 }
