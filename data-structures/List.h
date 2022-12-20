@@ -1,11 +1,9 @@
 # include <stdlib.h>
 
-struct node{
+typedef struct node{
     Elem data;
     struct node *next;
-};
-
-typedef struct node *List;
+} *List;
 
 List new_list(){
     return NULL;
@@ -47,11 +45,29 @@ List remove_node_list(Elem e, List l){
         return remove_head_list(l);
     if(is_new_list(list_tail(l)))
         return l;
-    return insert_head(list_head(l), remove_node_list(e, list_tail(l)));
+    return insert_head_list(
+        list_head(l),
+        remove_node_list(e, list_tail(l))
+    );
+}
+
+int is_in_list(Elem e, List l){
+    if(is_new_list(l))
+        return 0;
+    if(elem_cmp(e, list_head(l)))
+        return 1;
+    return is_in_list(e, list_tail(l));
 }
 
 void print_list(List list){
-    print_elem(list_head(list));
-    if(!is_new_list(list))
+    printf("[");
+    if(is_new_list(list_tail(list))){
+        print_elem(list_head(list));
+        printf("]\n");
+    }
+    else{
+        print_elem(list_head(list));
+        printf(", ");
         print_list(list_tail(list));
+    }
 }

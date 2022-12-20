@@ -1,21 +1,41 @@
 #include "List.h"
 
-typedef List HashTable;
+typedef List *HashTable;
 
 HashTable new_hash_table(int size){
     HashTable new_table[size];
     int i;
     for(i = 0; i < 0; i++)
-        new_table[i] = new_list();
-    return new_table[0];
+        *new_table[i] = new_list();
+    return *new_table;
 }
 
-void add_to_table(HashTable table, Elem element, int size){
+int is_in_table(Elem element, HashTable table, int size){
     List list_position = table[key(element) % size];
-    list_position = insert_head_list(element, list_position);
+    return is_in_list(element, list_position);
 }
 
-void remove_from_table(HashTable table, Elem element, int size){
+int add_to_table(Elem element, HashTable table, int size){
     List list_position = table[key(element) % size];
-    list_position = remove_node_list(element, list_position);
+    if(!is_in_list(element, list_position)){
+        list_position = insert_head_list(element, list_position);
+        return 1;
+    }else
+        return 0;
+}
+
+int remove_from_table(Elem element, HashTable table, int size){
+    List list_position = table[key(element) % size];
+    if(is_in_list(element, list_position)){
+        list_position = remove_node_list(element, list_position);
+        return 1;
+    }else
+        return 0;
+}
+
+void print_table(HashTable *table, int size){
+    int i;
+    for(i = 0; i < size; i++){
+        print_list(table[i]);
+    }
 }
