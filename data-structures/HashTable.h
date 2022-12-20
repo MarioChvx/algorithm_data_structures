@@ -3,11 +3,11 @@
 typedef List *HashTable;
 
 HashTable new_hash_table(int size){
-    HashTable new_table[size];
+    List new_table[size];
     int i;
     for(i = 0; i < 0; i++)
-        *new_table[i] = new_list();
-    return *new_table;
+        new_table[i] = new_list();
+    return new_table;
 }
 
 int is_in_table(Elem element, HashTable table, int size){
@@ -33,9 +33,11 @@ int remove_from_table(Elem element, HashTable table, int size){
         return 0;
 }
 
-void print_table(HashTable *table, int size){
+void print_table(HashTable table, int size){
     int i;
     for(i = 0; i < size; i++){
+        printf(" %d [", i);
         print_list(table[i]);
+        printf("]\n");
     }
 }

@@ -60,13 +60,8 @@ int is_in_list(Elem e, List l){
 }
 
 void print_list(List list){
-    printf("[");
-    if(is_new_list(list_tail(list))){
-        print_elem(list_head(list));
-        printf("]\n");
-    }
-    else{
-        print_elem(list_head(list));
+    print_elem(list_head(list));
+    if(!is_new_list(list_tail(list))){
         printf(", ");
         print_list(list_tail(list));
     }
