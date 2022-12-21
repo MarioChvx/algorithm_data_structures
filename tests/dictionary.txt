@@ -1,0 +1,11 @@
+10
+gato cat
+perro dog
+pato duck
+hormiga ant
+mosca fly
+gallina hen
+pollo chicken
+vaca cow
+amarillo yellow
+verde green
